@@ -18,7 +18,6 @@ class HomeRemoteDataSrcImpl implements HomeRemoteDataSource {
       final response = await _dio.get('$baseUrl?country=$countryID&q=$search&category=$category&apiKey=$apiKey');
 
       if (response.statusCode == 200) {
-        print('hahah ${response.data}');
         return List<DataMap>.from(response.data['articles'] as List)
             .map((homeData) => HomeModel.fromJson(homeData))
             .toList();
