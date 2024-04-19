@@ -1,5 +1,3 @@
-
-
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/src/home/data/datasources/home_remote_data_sources.dart';
 import 'package:flutter_application_1/src/home/data/repositories/home_repository_implementation.dart';
@@ -14,10 +12,10 @@ Dio _dio=Dio();
 
 
 Future<void> init() async {
-  sl..registerLazySingleton(() => _dio);
+  sl.registerLazySingleton(() => _dio);
 
-  sl..registerFactory(() => HomeCubit(sl()));
-  sl..registerLazySingleton(() => GetHome(sl()));
+  sl.registerFactory(() => HomeCubit(sl()));
+  sl.registerLazySingleton(() => GetHome(sl()));
   sl.registerLazySingleton<HomeRepository>(() => HomeRepositoryImplementation(sl()));
   sl.registerLazySingleton<HomeRemoteDataSource>(() => HomeRemoteDataSrcImpl(sl()));
   

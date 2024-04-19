@@ -11,10 +11,10 @@ class HomeRepositoryImplementation extends HomeRepository {
   HomeRepositoryImplementation(this._homeDataSource);
   HomeRemoteDataSource _homeDataSource;
   @override
-  ResultFuture<List<HomeModel>> getListHome() async {
+  ResultFuture<List<HomeModel>> getListHome({required String countryID,String? search,String? category}) async {
     // TODO: implement getListHome
     try {
-      final result = await _homeDataSource.getListHome();
+      final result = await _homeDataSource.getListHome(countryID: countryID,search: search,category: category);
       return Right(result);
     } on ApiException catch (e) {
       return Left(ApiFailure.fromException(e));

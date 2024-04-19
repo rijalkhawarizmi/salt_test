@@ -12,6 +12,6 @@ abstract class HomeRepository{
 
  
 
- ResultFuture<List<HomeModel>> getListHome(); 
+ ResultFuture<List<HomeModel>> getListHome({required String countryID,String? search,String? category}); 
 
 }

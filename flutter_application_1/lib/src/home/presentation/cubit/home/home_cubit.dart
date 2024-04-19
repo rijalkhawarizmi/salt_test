@@ -11,9 +11,9 @@ class HomeCubit extends Cubit<HomeState> {
 
   final GetHome _getHome;
 
-  Future<void> getListHome() async {
+  Future<void> getListHome({required String countryID,String? search,String? category}) async {
     emit(HomeLoading());
-    final result = await _getHome();
+    final result = await _getHome(CreateHomeParams(countryID: countryID, search: search, category: category));
     result.fold(
       (failed) => emit(HomeFailed(message: failed.errorMessage)),
       (success) => emit(

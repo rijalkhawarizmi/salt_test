@@ -5,7 +5,7 @@ import '../../../../core/utils/typedef.dart';
 import '../models/home_model.dart';
 
 abstract class HomeRemoteDataSource {
-  Future<List<HomeModel>> getListHome();
+  Future<List<HomeModel>> getListHome({required String countryID,String? search,String? category});
 }
 
 class HomeRemoteDataSrcImpl implements HomeRemoteDataSource {
@@ -13,11 +13,12 @@ class HomeRemoteDataSrcImpl implements HomeRemoteDataSource {
   Dio _dio;
 
   @override
-  Future<List<HomeModel>> getListHome() async {
+  Future<List<HomeModel>> getListHome({required String countryID,String? search,String? category}) async {
     try {
-      final response = await _dio.get(baseUrl);
+      final response = await _dio.get('$baseUrl?country=$countryID&q=$search&category=$category&apiKey=$apiKey');
 
       if (response.statusCode == 200) {
+        print('hahah ${response.data}');
         return List<DataMap>.from(response.data['articles'] as List)
             .map((homeData) => HomeModel.fromJson(homeData))
             .toList();
